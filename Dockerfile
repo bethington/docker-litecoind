@@ -54,4 +54,4 @@ WORKDIR /litecoin
 ARG PARAMS
 ENV PARAMS ${PARAMS}
 
-CMD litecoind -datadir=/litecoin -server=1 -rest=1 -rpcallowip=172.16.0.0/12 -rpcuser=user -rpcpassword=pass ${PARAMS}
+CMD litecoind -datadir=/litecoin -server=1 -rest=1 -rpcbind=litecoin -rpcallowip=172.16.0.0/12 -rpcallowip=10.0.0.0/24 ${PARAMS}
