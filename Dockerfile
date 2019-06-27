@@ -3,7 +3,7 @@
 # Run to build docker image testnet:
 #   docker build --build-arg VERSION=v0.17.1 --build-arg PARAMS=-testnet -t bethington/litecoind:v0.17.1-testnet .
 # Must use litecoin as the container name like so:
-#   docker run --name litecoin -p 9332:9332 -p 9333:9333 -v ./data:/data bethington/litecoind
+#   docker run --name litecoin -p 9332:9332 -p 9333:9333 -e USER=MyUser -e PASS=MyPass -v ./data:/data bethington/litecoind
 FROM ubuntu:18.04
 MAINTAINER Ben Ethington <benaminde@gmail.com>
 
