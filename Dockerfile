@@ -54,4 +54,4 @@ EXPOSE 9332 9333
 WORKDIR /litecoin
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
-CMD litecoind -datadir=/litecoin/data -conf=/litecoin/litecoin.conf
+CMD litecoind
