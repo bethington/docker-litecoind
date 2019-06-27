@@ -47,11 +47,11 @@ RUN cd ~ \
  && rm -R build \
  && rm -R litecoin
 
-VOLUME /litecoin
+VOLUME /root/.litecoin
 
 EXPOSE 9332 9333
 
-WORKDIR /litecoin
+WORKDIR /root/.litecoin
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
 CMD litecoind
