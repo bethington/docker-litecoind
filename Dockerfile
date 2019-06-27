@@ -57,4 +57,4 @@ ARG PARAMS
 ENV PARAMS ${PARAMS}
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
-CMD litecoind -datadir=/litecoin -server=1 -rest=1 -disablewallet -rpcbind=litecoin -rpcallowip=172.16.0.0/12 -rpcallowip=10.0.0.0/24 -rpcuser=user -rpcpassword=pass ${PARAMS}
+CMD litecoind -datadir=/litecoin -server=1 -rest=1 -disablewallet -rpcbind=litecoin -rpcallowip=172.16.0.0/12 -rpcallowip=10.0.0.0/24 -rpcuser=$USER -rpcpassword=$PASS ${PARAMS}
