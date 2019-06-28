@@ -3,6 +3,7 @@ regtest=0
 server=1
 rest=1
 rpcbind=litecoin
+rpcbind=127.0.0.1
 rpcallowip=172.16.0.0/12
 rpcallowip=10.0.0.0/24
 rpcuser=user
