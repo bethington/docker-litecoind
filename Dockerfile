@@ -18,7 +18,7 @@ ENV GROUP_ID ${GROUP_ID:-1000}
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -g ${GROUP_ID} litecoin \
-	&& useradd -u ${USER_ID} -g litecoin -s /bin/bash -m -d /litecoin litecoin
+	&& useradd -u ${USER_ID} -g litecoin -s /bin/bash -m -d $HOME litecoin
 
 # Install necessary tools and libraries
 RUN apt-get update
