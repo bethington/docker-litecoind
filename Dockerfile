@@ -30,14 +30,14 @@ RUN apt-get -y install libssl-dev libevent-dev libboost-system-dev libboost-file
  && apt-get clean
 
 # Install BerkeleyDB 4.8 to maintain binary wallet compatibility
-RUN cd ~ \
+RUN cd $HOME \
  && wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
  && tar -xvf db-4.8.30.NC.tar.gz \
  && cd db-4.8.30.NC/build_unix \
  && mkdir -p build \
- && ../dist/configure --disable-shared --enable-cxx --with-pic --prefix=/root/build \
+ && ../dist/configure --disable-shared --enable-cxx --with-pic --prefix=$HOME/build \
  && make install \
- && cd ~ \
+ && cd $HOME \
  && rm -R db-4.8.30.NC \
  && rm db-4.8.30.NC.tar.gz
  
@@ -49,22 +49,22 @@ ARG VERSION
 ENV VERSION ${VERSION}
 
 # Compile download and litecoind
-RUN cd ~ \
+RUN cd $HOME \
  && git clone https://github.com/litecoin-project/litecoin.git --branch ${VERSION} --single-branch \
  && cd litecoin \
  && ./autogen.sh \
- && ./configure CPPFLAGS="-I/root/build/include/ -O2" LDFLAGS="-L/root/build/lib/" --with-gui=no \
+ && ./configure CPPFLAGS="-I$HOME/build/include/ -O2" LDFLAGS="-L$HOME/build/lib/" --with-gui=no \
  && make \
  && make install \
- && cd ~ \
+ && cd $HOME \
  && rm -R build \
  && rm -R litecoin
 
-VOLUME /litecoin
+VOLUME $HOME
 
 EXPOSE 9332 9333 19332 19333
 
-WORKDIR /litecoin
+WORKDIR $HOME
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
-CMD litecoind -datadir=/litecoin/data
+CMD litecoind -datadir=$HOME/data
