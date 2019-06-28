@@ -7,6 +7,16 @@
 FROM ubuntu:18.04
 MAINTAINER Ben Ethington <benaminde@gmail.com>
 
+ENV HOME /litecoin
+
+# add user with specified (or default) user/group ids
+ENV USER_ID ${USER_ID:-1000}
+ENV GROUP_ID ${GROUP_ID:-1000}
+
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+RUN groupadd -g ${GROUP_ID} litecoin \
+	&& useradd -u ${USER_ID} -g litecoin -s /bin/bash -m -d /litecoin litecoin
+
 # Install necessary tools and libraries
 RUN apt-get update
 RUN apt-get -y install git nano curl wget net-tools
@@ -47,11 +57,11 @@ RUN cd ~ \
  && rm -R build \
  && rm -R litecoin
 
-VOLUME /root/.litecoin
+VOLUME /litecoin
 
 EXPOSE 9332 9333
 
-WORKDIR /root/.litecoin
+WORKDIR /litecoin
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
-CMD litecoind -datadir=/root/.litecoin/data
+CMD litecoind -datadir=/litecoin/data
