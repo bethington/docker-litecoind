@@ -59,7 +59,7 @@ RUN cd ~ \
 
 VOLUME /litecoin
 
-EXPOSE 9332 9333
+EXPOSE 9332 9333 19332 19333
 
 WORKDIR /litecoin
 
