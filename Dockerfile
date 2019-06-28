@@ -67,4 +67,4 @@ EXPOSE 9332 9333 19332 19333
 WORKDIR $HOME
 
 # Must use rpcbind and rpcallowip to access RPC and REST externally
-CMD litecoind -datadir=$HOME/data
+CMD litecoind
